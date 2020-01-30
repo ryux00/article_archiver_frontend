@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,29 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.login-form {
+  max-width: 300px;
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+
+#form_container {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  height: 100vh;
+  justify-items: center;
+}
+
+.login_header {
+  font-family: "Open Sans", sans-serif;
+  font-size: 22px;
 }
