@@ -21,6 +21,7 @@ class NormalLoginForm extends React.Component {
           .then(response => response.json())
           .then(data => {
             console.log("Success:", data);
+            localStorage.setItem("token", data["token"]);
           })
           .catch(error => {
             console.error("Error:", error);
