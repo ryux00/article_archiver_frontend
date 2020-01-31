@@ -1,8 +1,12 @@
 import React from "react";
 import { Button, Form, Icon, Input, Checkbox } from "antd";
+import { Redirect } from "react-router-dom";
 // const { Form, Icon, Input, Button, Checkbox } = antd;
 import "antd/dist/antd.css";
 class NormalLoginForm extends React.Component {
+  state = {
+    redirect: false
+  };
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -22,6 +26,7 @@ class NormalLoginForm extends React.Component {
           .then(data => {
             console.log("Success:", data);
             localStorage.setItem("token", data["token"]);
+            this.setState({ redirect: true });
           })
           .catch(error => {
             console.error("Error:", error);
@@ -33,6 +38,10 @@ class NormalLoginForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
     return (
       <div id="container">
         <div id="form_container">
