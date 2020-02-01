@@ -63,3 +63,7 @@
   font-family: "Open Sans", sans-serif;
   font-size: 22px;
 }
+
+.article_grid_container {
+  padding: 10px;
+}
