@@ -40,7 +40,7 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     const { redirect } = this.state;
     if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/article" />;
     }
     return (
       <div id="container">
