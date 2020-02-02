@@ -12,11 +12,22 @@ class ArticleGrid extends React.Component {
         renderItem={item => (
           <List.Item>
             <List.Item.Meta
-              avatar={<Avatar>{item.article_id.site_name[0]}</Avatar>}
-              title={<a href="https://ant.design">{item.article_id.title}</a>}
-              description={item.article_id.site_name}
+              avatar={
+                <Avatar>
+                  {item.article_data.site_name
+                    ? item.article_data.site_name[0]
+                    : item.article_data.title[0]}
+                </Avatar>
+              }
+              title={<a href="https://ant.design">{item.article_data.title}</a>}
+              description={item.article_data.site_name}
             />
-            <span>{Math.ceil(item.article_id.length / 800)} minute read</span>
+            <span>
+              {item.article_data.estimated_reading_time
+                ? item.article_data.estimated_reading_time
+                : Math.ceil(item.article_data.length / 800)}{" "}
+              minute read
+            </span>
           </List.Item>
         )}
       />
