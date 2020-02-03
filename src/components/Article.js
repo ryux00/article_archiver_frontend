@@ -1,21 +1,27 @@
 import React from "react";
-import { Button, Form, Icon, Input, Checkbox, Empty } from "antd";
-import ArticleGrid from "./ArticleGrid";
 import { Redirect } from "react-router-dom";
-// import { render } from "@testing-library/react";
 
-class ArticleList extends React.Component {
+class Article extends React.Component {
   state = {
-    article_list: [],
+    article_data: {},
     status: false,
     redirect: false
   };
   fetch_article() {
-    fetch("http://127.0.0.1:8000/api/article_list/", {
+    const request_body = {
+      article_id: this.props.match.params.article
+    };
+    var requestOptions = {
+      method: "GET",
       headers: {
         Authorization: "token " + localStorage.getItem("token")
-      }
-    })
+      },
+      redirect: "follow"
+    };
+    fetch(
+      "http://127.0.0.1:8000/api/article/" + this.props.match.params.article,
+      requestOptions
+    )
       .then(response => {
         if (response.status !== 200) {
           throw new Error(response.status);
@@ -25,14 +31,13 @@ class ArticleList extends React.Component {
       })
       .then(data => {
         console.log("Success:", data);
-        this.setState({ article_list: data.articles, status: true });
+        this.setState({ article_data: data, status: true });
       })
       .catch(error => {
         console.error("Error:", error);
         this.setState({ redirect: true, status: true });
       });
   }
-
   render() {
     if (!this.state.status) {
       this.fetch_article();
@@ -40,19 +45,18 @@ class ArticleList extends React.Component {
     if (this.state.redirect && this.state.status) {
       return <Redirect to="/login" />;
     }
-
-    let article = this.state.article_list;
-    if (article.length === 0) {
-      return <Empty />;
-    }
+    console.log(this.props.match.params.article);
+    console.log(this.state);
     return (
       <div className="container">
-        <div className="article_grid_container">
-          <ArticleGrid articles={article}></ArticleGrid>
-        </div>
+        <h1>{this.state.article_data.title}</h1>
+        <div>{}</div>
+        <div
+          dangerouslySetInnerHTML={{ __html: this.state.article_data.content }}
+        />
       </div>
     );
   }
 }
 
-export default ArticleList;
+export default Article;

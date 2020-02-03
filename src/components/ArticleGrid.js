@@ -19,7 +19,9 @@ class ArticleGrid extends React.Component {
                     : item.article_data.title[0]}
                 </Avatar>
               }
-              title={<a href="https://ant.design">{item.article_data.title}</a>}
+              title={
+                <a href={"article/"+ item.article_data.id}>{item.article_data.title}</a>
+              }
               description={item.article_data.site_name}
             />
             <span>
