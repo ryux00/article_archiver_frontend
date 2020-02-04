@@ -8,9 +8,6 @@ class Article extends React.Component {
     redirect: false
   };
   fetch_article() {
-    const request_body = {
-      article_id: this.props.match.params.article
-    };
     var requestOptions = {
       method: "GET",
       headers: {
@@ -49,11 +46,23 @@ class Article extends React.Component {
     console.log(this.state);
     return (
       <div className="container">
-        <h1>{this.state.article_data.title}</h1>
-        <div>{}</div>
-        <div
-          dangerouslySetInnerHTML={{ __html: this.state.article_data.content }}
-        />
+        <div className="article-container">
+          <h1>{this.state.article_data.title}</h1>
+          <h4 className="article-byline">{this.state.article_data.byline}</h4>
+          <span>
+            {this.state.article_data.estimated_reading_time
+              ? this.state.article_data.estimated_reading_time
+              : Math.ceil(this.state.article_data.length / 800)}{" "}
+            minute read
+          </span>
+          <hr></hr>
+          {/* Dangerous!!! */}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: this.state.article_data.content
+            }}
+          />
+        </div>
       </div>
     );
   }
