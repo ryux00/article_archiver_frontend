@@ -79,7 +79,48 @@
   font-size: 1.2em;
 }
 
+.dark_theme {
+  background: #333333 !important;
+  color: white !important;
+}
+.dark_theme h1 {
+  color: white !important;
+}
+.dark_theme h2 {
+  color: white !important;
+}
+.dark_theme h3 {
+  color: white !important;
+}
+.dark_theme h4 {
+  color: white !important;
+}
+.dark_theme h5 {
+  color: white !important;
+}
+.dark_theme h6 {
+  color: white !important;
+}
 
+/* .dark_theme .ant-radio-button-wrapper {
+  background: #333333 !important;
+  color: white !important;
+} */
 
+.night_mode {
+  background: #f4ecd8;
+}
+
+.dark_theme_selector.ant-radio-button-wrapper-checked {
+  background: #333333 !important;
+  border-color: #333333 !important;
+}
+
+.night_mode_selector.ant-radio-button-wrapper-checked {
+  background: #f4ecd8 !important;
+  border-color: #f4ecd8 !important;
+  color: black !important;
+  box-shadow: -1px 0 0 0 #ffffff !important;
+}
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
 }
