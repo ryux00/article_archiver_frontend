@@ -28,15 +28,31 @@ class ArticleList extends React.Component {
       visible: true
     });
   };
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false
-    });
+  handleSave = (value, event) => {
+    let request_body = { url: value, tags: [] };
+    fetch("http://127.0.0.1:8000/api/article/", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "token " + localStorage.getItem("token")
+      },
+      body: JSON.stringify(request_body)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Success:", data);
+        this.handleCancel();
+        let article_list = this.state.article_list;
+        article_list.push(data)
+        this.fetch_article();
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        this.handleCancel();
+      });
   };
 
-  handleCancel = e => {
-    console.log(e);
+  handleCancel = () => {
     this.setState({
       visible: false
     });
@@ -101,14 +117,16 @@ class ArticleList extends React.Component {
         <Modal
           title="Add New Article"
           visible={this.state.visible}
-          onOk={this.handleOk}
           onCancel={this.handleCancel}
           footer={null}
         >
           <Search
-            placeholder="input search text"
+            placeholder="Enter Article URL"
             enterButton="Save"
             size="large"
+            required={true}
+            onSearch={this.handleSave}
+            type={Input.url}
           />
         </Modal>
       </div>
