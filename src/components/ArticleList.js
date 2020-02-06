@@ -1,16 +1,12 @@
 import React from "react";
 import {
   Button,
-  Form,
-  Icon,
   Input,
-  Checkbox,
   Empty,
   Menu,
   Avatar,
   Modal
 } from "antd";
-import { Layout } from "antd";
 
 import ArticleGrid from "./ArticleGrid";
 import { Redirect } from "react-router-dom";
@@ -93,7 +89,6 @@ class ArticleList extends React.Component {
     if (article.length === 0) {
       return <Empty />;
     }
-    const { Header, Footer, Sider, Content } = Layout;
     const { Search } = Input;
     return (
       <div className="container">
