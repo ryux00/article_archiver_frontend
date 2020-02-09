@@ -1,9 +1,18 @@
 import React from "react";
-import {List, Avatar } from "antd";
+import { List, Avatar } from "antd";
 // import { Redirect } from "react-router-dom";
 // import { render } from "@testing-library/react";
 
 class ArticleGrid extends React.Component {
+  get_reading_time = article_data => {
+    let reading_time = article_data.estimated_reading_time
+      ? article_data.estimated_reading_time
+      : Math.ceil(article_data.length / 800);
+    if (!isNaN(reading_time)) {
+      return reading_time + " minute read";
+    }
+    return "";
+  };
   render() {
     return (
       <List
@@ -20,16 +29,13 @@ class ArticleGrid extends React.Component {
                 </Avatar>
               }
               title={
-                <a href={"article/"+ item.article_data.id}>{item.article_data.title}</a>
+                <a href={"article/" + item.article_data.id}>
+                  {item.article_data.title}
+                </a>
               }
               description={item.article_data.site_name}
             />
-            <span>
-              {item.article_data.estimated_reading_time
-                ? item.article_data.estimated_reading_time
-                : Math.ceil(item.article_data.length / 800)}{" "}
-              minute read
-            </span>
+            <span>{this.get_reading_time(item.article_data)}</span>
           </List.Item>
         )}
       />
@@ -38,4 +44,3 @@ class ArticleGrid extends React.Component {
 }
 
 export default ArticleGrid;
-
