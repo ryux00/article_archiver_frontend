@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Input,
-  Empty,
-  Menu,
-  Avatar,
-  Modal
-} from "antd";
+import { Button, Input, Empty, Menu, Avatar, Modal } from "antd";
 
 import ArticleGrid from "./ArticleGrid";
 import { Redirect } from "react-router-dom";
@@ -19,11 +12,13 @@ class ArticleList extends React.Component {
     redirect: false,
     add_new_modal_visible: false
   };
+
   showModal = () => {
     this.setState({
       visible: true
     });
   };
+
   handleSave = (value, event) => {
     let request_body = { url: value, tags: [] };
     fetch("http://127.0.0.1:8000/api/article/", {
@@ -39,8 +34,9 @@ class ArticleList extends React.Component {
         console.log("Success:", data);
         this.handleCancel();
         let article_list = this.state.article_list;
-        article_list.push(data)
-        this.fetch_article();
+        article_list.splice(0, 0, data);
+        // article_list.push(data);
+        this.setState({ article_list });
       })
       .catch(error => {
         console.error("Error:", error);
