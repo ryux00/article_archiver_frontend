@@ -79,6 +79,11 @@
   font-size: 1.2em;
 }
 
+.article-container img {
+  /* width: 100%; */
+  max-width: 50em;
+}
+
 .dark_theme {
   background: #333333 !important;
   color: white !important;
@@ -122,8 +127,6 @@
   color: black !important;
   box-shadow: -1px 0 0 0 #ffffff !important;
 }
-
-
 
 .ant-menu-item .anticon {
   margin-right: 0px !important;
