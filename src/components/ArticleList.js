@@ -21,11 +21,14 @@ class ArticleList extends React.Component {
 
   handleSave = (value, event) => {
     let request_body = { url: value, tags: [] };
+    let token = localStorage.getItem("token")
+      ? localStorage.getItem("token")
+      : sessionStorage.getItem("token");
     fetch("http://127.0.0.1:8000/api/article/", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
-        Authorization: "token " + localStorage.getItem("token")
+        Authorization: "token " + token
       },
       body: JSON.stringify(request_body)
     })
@@ -51,9 +54,12 @@ class ArticleList extends React.Component {
   };
 
   fetch_article() {
+    let token = localStorage.getItem("token")
+      ? localStorage.getItem("token")
+      : sessionStorage.getItem("token");
     fetch("http://127.0.0.1:8000/api/article_list/", {
       headers: {
-        Authorization: "token " + localStorage.getItem("token")
+        Authorization: "token " + token
       }
     })
       .then(response => {

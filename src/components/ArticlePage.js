@@ -14,10 +14,14 @@ class ArticlePage extends React.Component {
     this.setState({ theme: e.target.value });
   };
   fetch_article() {
+    let token = localStorage.getItem("token")
+    ? localStorage.getItem("token")
+    : sessionStorage.getItem("token")
     var requestOptions = {
       method: "GET",
       headers: {
-        Authorization: "token " + localStorage.getItem("token")
+        Authorization:
+          "token " + token
       },
       redirect: "follow"
     };

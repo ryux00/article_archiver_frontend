@@ -11,6 +11,7 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        console.log(values);
         const request_body = {
           username: values.username,
           password: values.password
@@ -25,7 +26,11 @@ class NormalLoginForm extends React.Component {
           .then(response => response.json())
           .then(data => {
             console.log("Success:", data);
-            localStorage.setItem("token", data["token"]);
+            if (values.remember) {
+              localStorage.setItem("token", data["token"]);
+            } else {
+              sessionStorage.setItem("token", data["token"]);
+            }
             this.setState({ redirect: true });
           })
           .catch(error => {
