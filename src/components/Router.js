@@ -4,12 +4,14 @@ import App from "./App";
 import Login from "./Login";
 import ArticleList from "./ArticleList.js";
 import ArticlePage from "./ArticlePage";
+import Logout from "./Logout";
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={App} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/logout" component={Logout} />
       <Route exact path="/article" component={ArticleList} />
       <Route exact path="/article/:article" component={ArticlePage} />
     </Switch>
