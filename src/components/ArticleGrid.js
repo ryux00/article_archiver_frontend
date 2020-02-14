@@ -87,7 +87,7 @@ class ArticleGrid extends React.Component {
                   </Avatar>
                 }
                 title={
-                  <a href={"article/" + item.article_data.id}>
+                  <a href={"article/" + item.id}>
                     {item.article_data.title}
                   </a>
                 }
@@ -98,20 +98,20 @@ class ArticleGrid extends React.Component {
                 <Dropdown
                   overlay={
                     <Menu onClick={this.ArticleMenuonClick}>
-                      <Menu.Item key={"tag_" + item.article_data.id}>
+                      <Menu.Item key={"tag_" + item.id}>
                         <Icon type="tags" onClick={this.showModal} /> Tag
                       </Menu.Item>
-                      <Menu.Item key={"delete_" + item.article_data.id}>
+                      <Menu.Item key={"delete_" + item.id}>
                         <Icon type="delete" />
                         Delete{" "}
                       </Menu.Item>
-                      <Menu.Item key={"archive_" + item.article_data.id}>
+                      <Menu.Item key={"archive_" + item.id}>
                         <Icon type="container" /> Archive
                       </Menu.Item>
-                      <Menu.Item key={"mark_read_" + item.article_data.id}>
+                      <Menu.Item key={"mark_read_" + item.id}>
                         <Icon type="check" /> Mark as Read
                       </Menu.Item>
-                      <Menu.Item key={"refetch_" + item.article_data.id}>
+                      <Menu.Item key={"refetch_" + item.id}>
                         <Icon type="sync" spin /> Refetch Article
                       </Menu.Item>
                     </Menu>
