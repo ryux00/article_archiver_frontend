@@ -50,6 +50,11 @@
 .login-form-button {
   width: 100%;
 }
+.registration-form {
+  max-width: 600px;
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
 
 #form_container {
   display: grid;
