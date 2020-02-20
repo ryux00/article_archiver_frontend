@@ -70,21 +70,12 @@ class Register extends React.Component {
             className="registration-form"
           >
             <span class="login_header">Register</span>
-            <Form.Item
-              label={
-                <span>
-                  Username&nbsp;
-                  <Tooltip title="What do you want others to call you?">
-                    <Icon type="question-circle-o" />
-                  </Tooltip>
-                </span>
-              }
-            >
+            <Form.Item label={<span>Username&nbsp;</span>}>
               {getFieldDecorator("username", {
                 rules: [
                   {
                     required: true,
-                    message: "Please input your username!",
+                    message: "Please enter your username!",
                     whitespace: true
                   }
                 ]
